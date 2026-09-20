@@ -114,18 +114,33 @@
 
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
-  navToggle.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('is-open');
+  let navScrollY = 0;
+
+  function setNavOpen(open) {
+    mainNav.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', String(open));
     navToggle.innerHTML = open
       ? '<svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>'
       : '<svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>';
+
+    if (open) {
+      navScrollY = window.scrollY;
+      document.body.style.top = -navScrollY + 'px';
+      document.body.classList.add('nav-open');
+    } else {
+      document.body.classList.remove('nav-open');
+      document.body.style.top = '';
+      window.scrollTo(0, navScrollY);
+    }
+  }
+
+  navToggle.addEventListener('click', () => {
+    setNavOpen(!mainNav.classList.contains('is-open'));
   });
-  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mainNav.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>';
-  }));
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mainNav.classList.contains('is-open')) setNavOpen(false);
+  });
 
   /* ============================================================
      REVEAL ON SCROLL

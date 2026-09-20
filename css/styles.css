@@ -156,8 +156,10 @@ svg use, svg path, svg circle, svg rect { fill: currentColor; }
 .main-nav a:hover { color: #fff; }
 .main-nav a:hover::after { right: 0; }
 
-.header-actions { display: flex; align-items: center; gap: var(--space-4); }
+.header-actions { display: flex; align-items: center; gap: var(--space-4); position: relative; z-index: 95; }
 .nav-toggle { display: inline-flex; background: none; border: none; color: #fff; padding: 6px; }
+
+body.nav-open { position: fixed; width: 100%; overflow: hidden; }
 
 @media (min-width: 1024px) {
   .main-nav { display: flex; }
@@ -175,8 +177,7 @@ svg use, svg path, svg circle, svg rect { fill: currentColor; }
     transform: translateX(100%); transition: transform var(--dur-med) var(--ease-in-out);
     pointer-events: none;
   }
-  .main-nav.is-open { pointer-events: auto; }
-  .main-nav.is-open { transform: translateX(0); }
+  .main-nav.is-open { pointer-events: auto; transform: translateX(0); }
   .main-nav a { font-family: var(--font-display); font-size: 30px; font-weight: 600; }
 }
 
