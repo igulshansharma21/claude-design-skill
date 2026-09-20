@@ -130,7 +130,7 @@
     } else {
       document.body.classList.remove('nav-open');
       document.body.style.top = '';
-      window.scrollTo(0, navScrollY);
+      window.scrollTo({ top: navScrollY, behavior: 'instant' });
     }
   }
 

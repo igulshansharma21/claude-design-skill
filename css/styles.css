@@ -337,6 +337,19 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
 .filter-btn:hover { color: #fff; border-color: rgba(255,255,255,.4); }
 .filter-btn.is-active { background: var(--red-600); border-color: var(--red-600); color: #fff; }
 
+@media (max-width: 700px) {
+  .filter-bar {
+    flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--space-5);
+    margin-inline: calc(var(--space-5) * -1); padding-inline: var(--space-5);
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 3%, #000 94%, transparent);
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; scroll-snap-align: start; }
+}
+
 .model-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
 @media (min-width: 700px) { .model-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1100px) { .model-grid { grid-template-columns: repeat(3, 1fr); } }
