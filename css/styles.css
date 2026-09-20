@@ -340,8 +340,11 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
 @media (max-width: 700px) {
   .filter-bar {
     flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--space-5);
     margin-inline: calc(var(--space-5) * -1); padding-inline: var(--space-5);
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 3%, #000 94%, transparent);
   }
   .filter-bar::-webkit-scrollbar { display: none; }
   .filter-btn { flex-shrink: 0; scroll-snap-align: start; }
